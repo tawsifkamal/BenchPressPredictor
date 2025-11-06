@@ -1,3 +1,2 @@
 Hello, world! 👋
-
-This is a sample repository.
+This is a change made by Jules.
