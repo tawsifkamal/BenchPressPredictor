@@ -1,0 +1,21 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#repo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.repo {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+}
