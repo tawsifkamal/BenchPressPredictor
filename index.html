@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bench Press Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bench Press Predictor</h1>
+        <form id="predictor-form">
+            <label for="weight">Weight Lifted (lbs):</label>
+            <input type="number" id="weight" required>
+            <label for="reps">Reps Performed:</label>
+            <input type="number" id="reps" required>
+            <button type="submit">Predict 1RM</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
