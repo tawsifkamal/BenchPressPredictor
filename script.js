@@ -1,47 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const repoInput = document.getElementById('repo-input');
-    const searchBtn = document.getElementById('search-btn');
-    const repoInfo = document.getElementById('repo-info');
+    const repoContainer = document.getElementById('repo-container');
 
-    const fetchRepoData = (repoName) => {
-        if (!repoName) {
-            repoInfo.innerHTML = '<p>Please enter a repository name.</p>';
-            return;
-        }
+    fetch('https://api.github.com/repositories')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            repoContainer.innerHTML = ''; // Clear loading/error messages
+            data.slice(0, 10).forEach(repo => {
+                const repoEl = document.createElement('div');
+                repoEl.classList.add('repo');
 
-        fetch(`https://api.github.com/repos/${repoName}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Repository not found');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const { full_name, description, stargazers_count, forks_count, open_issues_count, html_url } = data;
-                repoInfo.innerHTML = `
-                    <h2><a href="${html_url}" target="_blank">${full_name}</a></h2>
-                    <p>${description || 'No description available.'}</p>
-                    <p><strong>Stars:</strong> ${stargazers_count}</p>
-                    <p><strong>Forks:</strong> ${forks_count}</p>
-                    <p><strong>Open Issues:</strong> ${open_issues_count}</p>
-                `;
-            })
-            .catch(error => {
-                repoInfo.innerHTML = `<p>${error.message}</p>`;
+                const repoName = document.createElement('h2');
+                repoName.textContent = repo.name;
+
+                const repoDescription = document.createElement('p');
+                repoDescription.textContent = repo.description || 'No description available.';
+
+                repoEl.appendChild(repoName);
+                repoEl.appendChild(repoDescription);
+                repoContainer.appendChild(repoEl);
             });
-    };
-
-    searchBtn.addEventListener('click', () => {
-        fetchRepoData(repoInput.value.trim());
-    });
-
-    repoInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            fetchRepoData(repoInput.value.trim());
-        }
-    });
-
-    // Fetch initial repository as requested
-    repoInput.value = 'danikhan632/foo';
-    fetchRepoData('danikhan632/foo');
+        })
+        .catch(error => {
+            console.error('Error fetching repositories:', error);
+            repoContainer.innerHTML = `<p class="error">Could not fetch repositories. Please try again later.</p>`;
+        });
 });

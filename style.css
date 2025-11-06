@@ -1,52 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: sans-serif;
+    margin: 20px;
 }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 500px;
+#repo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-h1 {
-    text-align: center;
-}
-
-.search-container {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-#repo-input {
-    flex: 1;
-    padding: 10px;
+.repo {
     border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-#search-btn {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-#search-btn:hover {
-    background-color: #0056b3;
-}
-
-.repo-info {
-    border-top: 1px solid #eee;
-    padding-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
 }
