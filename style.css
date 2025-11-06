@@ -1,0 +1,13 @@
+/* Apply basic styles to the body */
+body {
+    /* Use a sans-serif font for the text */
+    font-family: sans-serif;
+    /* Center the content horizontally and vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Make the body take up the full height of the viewport */
+    height: 100vh;
+    /* Remove the default margin */
+    margin: 0;
+}
